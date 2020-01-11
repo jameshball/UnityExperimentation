@@ -69,7 +69,9 @@ public class Movement : MonoBehaviour
             gameObject.transform.localScale = Vector3.SmoothDamp(gameObject.transform.localScale, originalScale, ref velocity, 0.1f);
         }
 
-        if (body.velocity.x < maxMagnitude)
+        Debug.Log(Mathf.Abs(body.velocity.x));
+
+        if (Mathf.Abs(body.velocity.x) < maxMagnitude)
         {
             float newMovementForce = collider.IsTouching(floor) ? movementForce : movementForce / 8;
 
