@@ -48,7 +48,8 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey("space") && jumpCharging)
         {
-            gameObject.transform.localScale = Vector3.SmoothDamp(gameObject.transform.localScale, getDestinationScale(), ref velocity, jumpChargeTime);
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, getDestinationScale(), ref velocity, jumpChargeTime);
+            body.AddForce(new Vector2(0, -preventativeForce) * Time.deltaTime);
         }
 
         if (Input.GetKeyUp("space"))
@@ -72,16 +73,16 @@ public class Movement : MonoBehaviour
 
         if (Mathf.Abs(body.velocity.x) < maxMagnitude)
         {
-            float newMovementForce = collider.IsTouching(floor) ? movementForce : movementForce / 8;
+            float newMovementForce = collider.IsTouchingLayers(groundMask) ? movementForce : movementForce / 8;
 
             if (Input.GetKey("a"))
             {
-                body.AddForce(new Vector2(-newMovementForce, -preventativeForce) * Time.deltaTime);
+                body.AddForce(new Vector2(-newMovementForce, 0) * Time.deltaTime);
             }
 
             if (Input.GetKey("d"))
             {
-                body.AddForce(new Vector2(newMovementForce, -preventativeForce) * Time.deltaTime);
+                body.AddForce(new Vector2(newMovementForce, 0) * Time.deltaTime);
             }
         }
 
