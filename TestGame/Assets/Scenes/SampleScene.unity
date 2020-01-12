@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 98260848}
   - component: {fileID: 98260847}
   - component: {fileID: 98260846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 319622900}
   - component: {fileID: 319622899}
   - component: {fileID: 319622898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,13 +327,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319622897}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.58, y: -3.8899999, z: -0.421875}
-  m_LocalScale: {x: 1.0343276, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.31920734, w: 0.94768494}
+  m_LocalPosition: {x: 12.277, y: -4.96, z: -0.421875}
+  m_LocalScale: {x: 9.927476, y: 8.53, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.23}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,11 +466,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMagnitude: 5
-  movementForce: 25
-  maxJumpForce: 500
-  preventativeForce: 10
+  movementForce: 650
+  maxJumpForce: 17500
+  preventativeForce: 100
   impactThreshold: 1
   jumpChargeTime: 0.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
   clip: {fileID: 8300000, guid: d5c075ad84c7682498c9a0a9df70faba, type: 3}
   floor: {fileID: 98260846}
 --- !u!50 &1267482011

@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public float preventativeForce;
     public float impactThreshold;
     public float jumpChargeTime;
+    public LayerMask groundMask;
 
     public AudioClip clip;
     public BoxCollider2D floor;
@@ -34,7 +35,7 @@ public class Movement : MonoBehaviour
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
 
-        if (collider.IsTouching(floor))
+        if (collider.IsTouchingLayers(groundMask))
         {
             timeOfLastFloorTouch = Time.time;
         }
@@ -57,7 +58,7 @@ public class Movement : MonoBehaviour
                 float jumpForce = maxJumpForce * (Time.time - timeOfLastCharge) / jumpChargeTime;
                 jumpForce = jumpForce > maxJumpForce ? maxJumpForce : jumpForce;
 
-                body.AddForce(new Vector2(0, jumpForce));
+                body.AddForce(new Vector2(0, jumpForce) * Time.deltaTime);
             }
 
             jumpCharging = false;
@@ -69,20 +70,18 @@ public class Movement : MonoBehaviour
             gameObject.transform.localScale = Vector3.SmoothDamp(gameObject.transform.localScale, originalScale, ref velocity, 0.1f);
         }
 
-        Debug.Log(Mathf.Abs(body.velocity.x));
-
         if (Mathf.Abs(body.velocity.x) < maxMagnitude)
         {
             float newMovementForce = collider.IsTouching(floor) ? movementForce : movementForce / 8;
 
             if (Input.GetKey("a"))
             {
-                body.AddForce(new Vector2(-newMovementForce, -preventativeForce));
+                body.AddForce(new Vector2(-newMovementForce, -preventativeForce) * Time.deltaTime);
             }
 
             if (Input.GetKey("d"))
             {
-                body.AddForce(new Vector2(newMovementForce, -preventativeForce));
+                body.AddForce(new Vector2(newMovementForce, -preventativeForce) * Time.deltaTime);
             }
         }
 
